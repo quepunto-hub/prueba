@@ -1,0 +1,74 @@
+/* Updated: 2025-12-02T14:12:04.965Z */
+/* Updated: 2025-12-02T14:04:53.176Z */
+/* Updated: 2025-12-02T11:55:10.930Z */
+/* Updated: 2025-12-02T09:07:06.126Z */
+/* Updated: 2025-12-02T07:21:06.157Z */
+/* Updated: 2025-12-02T07:17:15.636Z */
+/* Updated: 2025-12-02T07:14:21.599Z */
+/* Updated: 2025-12-02T07:12:51.689Z */
+/* Updated: 2025-12-01T22:41:43.097Z */
+/* Updated: 2025-12-01T21:29:45.207Z */
+/* Updated: 2025-12-01T18:53:11.965Z */
+/* Updated: 2025-12-01T13:30:48.617Z */
+/* Updated: 2025-12-01T12:34:12.728Z */
+/* Updated: 2025-12-01T10:34:53.732Z */
+/* Updated: 2025-11-30T22:29:26.791Z */
+/* Updated: 2025-11-30T17:30:09.556Z */
+/* Updated: 2025-11-30T17:30:01.870Z */
+/* Updated: 2025-11-30T12:21:28.670Z */
+/* Updated: 2025-11-30T12:07:19.243Z */
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-gold: var(--gold);
+  --color-gold-dark: var(--gold-dark);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+:root {
+  --radius: 0.5rem;
+  --background: #ffffff;
+  --foreground: #000000;
+  --gold: #d4af37;
+  --gold-dark: #b8941f;
+  --card: #ffffff;
+  --card-foreground: #000000;
+  --muted: #f5f5f5;
+  --muted-foreground: #737373;
+  --border: #e5e5e5;
+  --input: #e5e5e5;
+  --ring: #d4af37;
+}
+
+.dark {
+  --background: #000000;
+  --foreground: #ffffff;
+  --card: #1a1a1a;
+  --card-foreground: #ffffff;
+  --muted: #262626;
+  --muted-foreground: #a3a3a3;
+  --border: #333333;
+  --input: #262626;
+}
+
+@layer base {
+  body {
+    background-color: var(--background);
+    color: var(--foreground);
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    font-weight: 700;
+  }
+}
+
+/* Hide Next.js error overlay portal */
+nextjs-portal {
+  display: none !important;
+}
