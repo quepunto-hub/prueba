@@ -24,7 +24,7 @@ import Image from "next/image"
 import Link from "next/link"
 import { useAuth } from "@/contexts/AuthContext"
 import { useRouter } from "next/navigation" // solo useRouter
-
+//comentario
 export const dynamic = "force-dynamic"
 
 const features = [
