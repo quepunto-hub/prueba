@@ -23,7 +23,7 @@ import LegendsBadge from "@/components/LegendsBadge"
 import Image from "next/image"
 import Link from "next/link"
 import { useAuth } from "@/contexts/AuthContext"
-import { useRouter } from "next/navigation"
+import { useRouter } from "next/navigation" // solo useRouter
 
 export const dynamic = "force-dynamic"
 
@@ -227,6 +227,7 @@ const faqs = [
       "Las cuentas son personales. Ofrecemos planes familiares y de grupo para compartir el acceso de forma oficial.",
   },
 ]
+
 type LegendsPageProps = {
   searchParams?: { action?: string }
 }
