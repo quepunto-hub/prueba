@@ -1,6 +1,6 @@
 "use client"
 
-import { Suspense, useEffect, useState } from "react"
+import { useEffect, useState } from "react"
 import Header from "@/components/Header"
 import Footer from "@/components/Footer"
 import { Card } from "@/components/ui/card"
@@ -11,22 +11,19 @@ import {
   Crown,
   TrendingUp,
   Users,
-  Lock,
   BarChart3,
   Mail,
   Target,
   Zap,
   Activity,
   Award,
-  Eye,
   FileText,
-  Calendar,
 } from "lucide-react"
 import LegendsBadge from "@/components/LegendsBadge"
 import Image from "next/image"
 import Link from "next/link"
 import { useAuth } from "@/contexts/AuthContext"
-import { useRouter, useSearchParams } from "next/navigation"
+import { useRouter } from "next/navigation"
 
 export const dynamic = "force-dynamic"
 
@@ -230,12 +227,14 @@ const faqs = [
       "Las cuentas son personales. Ofrecemos planes familiares y de grupo para compartir el acceso de forma oficial.",
   },
 ]
+type LegendsPageProps = {
+  searchParams?: { action?: string }
+}
 
-function LegendsInner() {
+export default function LegendsPage({ searchParams }: LegendsPageProps) {
   const { login, userType } = useAuth()
   const router = useRouter()
-  const searchParams = useSearchParams()
-  const action = searchParams.get("action")
+  const action = searchParams?.action
   const [email, setEmail] = useState("")
   const [faqOpen, setFaqOpen] = useState<number | null>(null)
 
@@ -258,9 +257,11 @@ function LegendsInner() {
   }
 
   return (
-    <>
+    <div className="min-h-screen bg-white">
+      <Header />
+
       <main>
-        {/* Hero Section */}
+        {/* Hero */}
         <div className="relative overflow-hidden bg-gradient-to-br from-neutral-900 via-neutral-800 to-black py-20">
           <div className="container mx-auto px-4 text-center text-white">
             <div className="mb-6 flex justify-center">
@@ -270,9 +271,9 @@ function LegendsInner() {
               Conviértete en un <span className="text-[#d4af37]">LEGEND</span>
             </h1>
             <p className="mx-auto mb-8 max-w-2xl text-xl text-neutral-300">
-              Accede a análisis avanzados, métricas premium y contenido exclusivo para entender el fútbol como nunca antes
+              Accede a análisis avanzados, métricas premium y contenido exclusivo para entender el fútbol como nunca
+              antes
             </p>
-
             <div className="flex flex-col items-center gap-4">
               <Button
                 onClick={handleLegendsLogin}
@@ -283,12 +284,11 @@ function LegendsInner() {
               <p className="text-sm text-neutral-400">Demo gratuita • Acceso inmediato • Sin tarjeta</p>
             </div>
           </div>
-
           <div className="absolute -bottom-20 -left-20 h-64 w-64 rounded-full bg-[#d4af37]/20 blur-3xl" />
           <div className="absolute -right-20 -top-20 h-64 w-64 rounded-full bg-[#d4af37]/20 blur-3xl" />
         </div>
 
-        {/* Stats Section */}
+        {/* Stats */}
         <div className="border-b border-neutral-200 bg-white py-12">
           <div className="container mx-auto px-4">
             <div className="grid grid-cols-2 gap-8 md:grid-cols-4">
@@ -305,14 +305,13 @@ function LegendsInner() {
           </div>
         </div>
 
-        {/* Features Section */}
+        {/* Features */}
         <div className="container mx-auto px-4 py-16">
           <h2 className="mb-4 text-center text-3xl font-bold">Todo lo que incluye LEGEND</h2>
           <p className="mx-auto mb-12 max-w-2xl text-center text-neutral-600">
             Más de 120 métricas exclusivas, análisis predictivos con IA y herramientas profesionales de visualización de
             datos
           </p>
-
           <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-4">
             {features.map((feature, index) => (
               <Card key={index} className="p-6 text-center transition-all hover:border-[#d4af37] hover:shadow-lg">
@@ -326,14 +325,13 @@ function LegendsInner() {
           </div>
         </div>
 
-        {/* Exclusive Content */}
+        {/* Exclusive content */}
         <div className="bg-neutral-50 py-16">
           <div className="container mx-auto px-4">
             <h2 className="mb-4 text-center text-3xl font-bold">Contenido Exclusivo LEGEND</h2>
             <p className="mx-auto mb-12 max-w-2xl text-center text-neutral-600">
               Explora el tipo de análisis avanzado al que tendrás acceso como miembro LEGEND
             </p>
-
             <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
               {exclusiveContent.map((content, index) => (
                 <Link key={index} href={content.link}>
@@ -364,16 +362,15 @@ function LegendsInner() {
           </div>
         </div>
 
-        {/* Comparison Table */}
+        {/* Plans */}
         <div className="py-16">
           <div className="container mx-auto px-4">
             <h2 className="mb-4 text-center text-3xl font-bold">Amateur vs LEGEND</h2>
             <p className="mx-auto mb-12 max-w-2xl text-center text-neutral-600">
               Compara las características de cada plan y elige el que mejor se adapte a tus necesidades
             </p>
-
             <div className="grid grid-cols-1 gap-8 lg:grid-cols-2">
-              {/* Amateur Plan */}
+              {/* Amateur */}
               <Card className="overflow-hidden">
                 <div className="bg-neutral-100 p-6 text-center">
                   <h3 className="text-2xl font-bold">Plan Amateur</h3>
@@ -390,8 +387,6 @@ function LegendsInner() {
                       </li>
                     ))}
                   </ul>
-
-                  {/* Newsletter Section */}
                   <div className="mt-8 rounded-lg border-2 border-[#d4af37] bg-[#d4af37]/5 p-6">
                     <div className="mb-4 flex items-center gap-2">
                       <Mail className="h-6 w-6 text-[#d4af37]" />
@@ -417,7 +412,7 @@ function LegendsInner() {
                 </div>
               </Card>
 
-              {/* LEGEND Plan */}
+              {/* Legend */}
               <Card className="overflow-hidden border-2 border-[#d4af37]">
                 <div className="bg-gradient-to-r from-[#d4af37] to-[#b8941f] p-6 text-center text-white">
                   <Crown className="mx-auto mb-2 h-8 w-8" />
@@ -436,7 +431,6 @@ function LegendsInner() {
                       </li>
                     ))}
                   </ul>
-
                   <div className="mt-8">
                     <Button
                       onClick={handleLegendsLogin}
@@ -458,7 +452,6 @@ function LegendsInner() {
             <p className="mx-auto mb-12 max-w-2xl text-center text-neutral-600">
               Miles de aficionados, analistas y profesionales confían en nuestras métricas
             </p>
-
             <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
               {testimonials.map((testimonial, index) => (
                 <Card key={index} className="p-6 transition-shadow hover:shadow-lg">
@@ -491,7 +484,6 @@ function LegendsInner() {
           <p className="mx-auto mb-12 max-w-2xl text-center text-neutral-600">
             ¿Tienes dudas? Aquí resolvemos las más comunes
           </p>
-
           <div className="mx-auto max-w-3xl space-y-4">
             {faqs.map((faq, index) => (
               <Card key={index} className="overflow-hidden">
@@ -536,17 +528,7 @@ function LegendsInner() {
           </Card>
         </div>
       </main>
-    </>
-  )
-}
 
-export default function LegendsPage() {
-  return (
-    <div className="min-h-screen bg-white">
-      <Header />
-      <Suspense fallback={<div className="p-8 text-center">Cargando LEGEND…</div>}>
-        <LegendsInner />
-      </Suspense>
       <Footer />
     </div>
   )
